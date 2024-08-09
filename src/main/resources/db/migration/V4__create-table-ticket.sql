@@ -1,6 +1,6 @@
 CREATE TABLE ticket(
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-    ocurrence_data DATETIME NOT NULL,
+    ocurrence_data TIMESTAMP NOT NULL,
     vehicle UUID NOT NULL,
     type_violation UUID NOT NULL,
     FOREIGN KEY (vehicle) REFERENCES vehicle(id) ON DELETE CASCADE,

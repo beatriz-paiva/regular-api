@@ -3,7 +3,6 @@ CREATE TABLE vehicle(
     modelo VARCHAR (50) NOT NULL,
     placa VARCHAR (50) NOT NULL,
     vehicle_type VARCHAR(50) NOT NULL,
-    placa VARCHAR (50) NOT,
     driver UUID NOT NULL,
     FOREIGN KEY (driver) REFERENCES driver(id) ON DELETE CASCADE
 );

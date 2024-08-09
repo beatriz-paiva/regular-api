@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import regularAPI.example.regularAPI.domain.driver.Driver;
 
 import java.util.UUID;
 
@@ -25,6 +26,6 @@ public class Vehicle {
     private String renavam;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "owner")
-    private Owner owner;
+    @JoinColumn(name = "driver")
+    private Driver driver;
 }
