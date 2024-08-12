@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import regularAPI.example.regularAPI.domain.driver.DTO.DriverRequestDTO;
 import regularAPI.example.regularAPI.domain.driver.DTO.DriverResponseDTO;
+import regularAPI.example.regularAPI.domain.driver.Driver;
 import regularAPI.example.regularAPI.service.DriverService;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/regular")
-public class DriverController <Driver> {
+public class DriverController {
 
     @Autowired
     private DriverService service;
@@ -37,8 +38,14 @@ public class DriverController <Driver> {
 
     }
 
-    public ResponseEntity<Driver> insert(Driver obj) {
-        return null;
+    @PostMapping("/")
+    public String post(@RequestBody Driver obj) {
+        try {
+            service.post(obj);
+            return "Dados inseridos com sucesso";
+        }catch (Exception e){
+            return "Tente novamente";
+        }
 
     }
     @DeleteMapping("/")

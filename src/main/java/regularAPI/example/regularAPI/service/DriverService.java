@@ -34,15 +34,21 @@ public class DriverService {
         return driverMapper.convertToDriverResponseDTO(repo.findById(id).orElse(null));
     }
 
-//    public List<DriverResponseDTO> get(String data) {
-//        DriverResponseDTO exists = repo.findByCpf(data).orElse(null);
-//        DriverResponseDTO
-//        assert exists != null;
-//        exists.setCpf(exists.getCpf());
-//        exists.setName(exists.getName());
-//        exists.setRenach(exists.getRenach());
-//        return List.of(repo.save(exists));
+    public Driver post(Driver obj){
 
+        Driver driver = new Driver();
+        if (obj.getCpf() != null){
+            driver.setCpf(obj.getCpf());
+        }
+        if (obj.getName() != null){
+            driver.setName(obj.getName());
+        }
+        if(obj.getRenach() !=null){
+            driver.setRenach(obj.getRenach());
+        }
+
+        return repo.save(driver);
+    }
 
     public DriverRequestDTO put(String cpf, DriverRequestDTO data) {
 
