@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import regularAPI.example.regularAPI.domain.driver.DTO.DriverRequestDTO;
-import regularAPI.example.regularAPI.domain.driver.Driver;
+import regularAPI.example.regularAPI.domain.driver.DTO.DriverResponseDTO;
 import regularAPI.example.regularAPI.service.DriverService;
 
 import java.util.List;
@@ -19,32 +19,31 @@ public class DriverController <Driver> {
     private DriverService service;
 
     @GetMapping("/drivers")
-    public ResponseEntity<List<DriverRequestDTO>> get() {
-        List<DriverRequestDTO> response = service.get();
+    public ResponseEntity<List<DriverResponseDTO>> get() {
+        List<DriverResponseDTO> response = service.get();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/")
-    public ResponseEntity<DriverRequestDTO> get(@RequestParam UUID id) {
-        DriverRequestDTO response = service.get(id);
+    public ResponseEntity<DriverResponseDTO> get(@RequestParam UUID id) {
+        DriverResponseDTO response = service.get(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<List<Driver>> patch(String data) {
-        return null;
+    @PatchMapping("/")
+    public DriverRequestDTO update(@RequestParam String cpf, @RequestBody DriverRequestDTO data) {
+        DriverRequestDTO response = service.put(cpf, data);
+        return response;
+
     }
 
     public ResponseEntity<Driver> insert(Driver obj) {
         return null;
 
     }
-
-    public ResponseEntity<Driver> update(Driver obj) {
-        return null;
-    }
-
-    public ResponseEntity<?> delete(Long id) {
-        return null;
+    @DeleteMapping("/")
+    public String delete(UUID id) {
+        var response = service.del(id);
+        return response;
     }
 }

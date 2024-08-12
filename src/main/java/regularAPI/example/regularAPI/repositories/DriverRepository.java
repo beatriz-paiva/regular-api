@@ -7,5 +7,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface DriverRepository extends JpaRepository<Driver, UUID> {
-    Optional<Driver> findByCpf(String cpf);
+//    @Query("SELECT * FROM driver WHERE driver.cpf = :driverCPF")
+//    Optional<Driver> findByCpf(@Param("driverCPF") String cpf);
+
+    <Optional>Driver findByCpf(String cpf);
+
 }
