@@ -13,13 +13,13 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/regular")
+@RequestMapping("/api/regular/drivers")
 public class DriverController {
 
     @Autowired
     private DriverService service;
 
-    @GetMapping("/drivers")
+    @GetMapping("/all")
     public ResponseEntity<List<DriverResponseDTO>> get() {
         List<DriverResponseDTO> response = service.get();
         return new ResponseEntity<>(response, HttpStatus.OK);

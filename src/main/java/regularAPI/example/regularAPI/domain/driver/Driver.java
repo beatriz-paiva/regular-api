@@ -1,20 +1,12 @@
 package regularAPI.example.regularAPI.domain.driver;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.Objects;
 import java.util.UUID;
 
 @Table(name="driver")
 @Entity
-//@Getter
-//@Setter
-//@AllArgsConstructor
-//@NoArgsConstructor
 public class Driver {
     @Id
     @GeneratedValue()
