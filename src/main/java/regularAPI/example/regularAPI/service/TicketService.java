@@ -1,11 +1,9 @@
 //package regularAPI.example.regularAPI.service;
 //
-//import regularAPI.example.regularAPI.domain.Ticket;
+//import regularAPI.example.regularAPI.domain.ticket.Ticket;
 //import regularAPI.example.regularAPI.repositories.TicketRepository;
 //import org.springframework.stereotype.Service;
 //import org.springframework.transaction.annotation.Transactional;
-//
-//import java.util.List;
 //
 //@Service
 //public class TicketService {
@@ -28,4 +26,16 @@
 //
 //        return ticketRepository.save(ticket);
 //    }
+//
+////    public List<Ticket> getAllTickets() {
+////    }
+////
+////    public Ticket getTicketById(Long id) {
+////    }
+////
+////    public Ticket updateTicket(Long id, Ticket ticket) {
+////    }
+////
+////    public void deleteTicket(Long id) {
+////    }
 //}

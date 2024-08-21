@@ -1,11 +1,16 @@
 package regularAPI.example.regularAPI.domain.violation.DTO;
 
-public class ViolationResponseDTO {
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import regularAPI.example.regularAPI.domain.violation.Enum.Factor;
+
+public class ViolationDTO {
 
     private String description;
     private double moint;
     private String rating;
-    private String factor;
+    @Enumerated(EnumType.STRING)
+    private Factor factor;
 
     public String getDescription() {
         return description;
@@ -31,11 +36,11 @@ public class ViolationResponseDTO {
         this.rating = rating;
     }
 
-    public String getFactor() {
+    public Factor getFactor() {
         return factor;
     }
 
-    public void setFactor(String factor) {
+    public void setFactor(Factor factor) {
         this.factor = factor;
     }
 }

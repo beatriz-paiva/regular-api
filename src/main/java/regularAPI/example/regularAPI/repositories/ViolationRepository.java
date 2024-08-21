@@ -1,7 +1,7 @@
 package regularAPI.example.regularAPI.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import regularAPI.example.regularAPI.domain.Violation;
+import regularAPI.example.regularAPI.domain.violation.Violation;
 
 import java.util.UUID;
 
