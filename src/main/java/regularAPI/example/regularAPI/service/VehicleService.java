@@ -51,8 +51,11 @@ public class VehicleService {
         return vehicleMapper.convertToCreateVehicleDTO(repo.save(vehicle));
     }
     public UpdateResponseVehicleDTO update(UUID id, UpdateVehicleDTO updateVehicleDTO){
+
         Vehicle vehicle = repo.findById(id).orElse(null);
+
         Driver driver = driverRepository.findById(updateVehicleDTO.getDriver().getId()).get();
+
         vehicle.setPlaca(updateVehicleDTO.getPlaca());
         vehicle.setRenavam(updateVehicleDTO.getRenavam());
         vehicle.setDriver(driver);

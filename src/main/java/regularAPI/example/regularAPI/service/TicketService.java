@@ -1,41 +1,81 @@
-//package regularAPI.example.regularAPI.service;
-//
-//import regularAPI.example.regularAPI.domain.ticket.Ticket;
-//import regularAPI.example.regularAPI.repositories.TicketRepository;
-//import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
-//
-//@Service
-//public class TicketService {
-//
-//    private final TicketRepository ticketRepository;
-//
-//    public TicketService(TicketRepository ticketRepository) {
-//        this.ticketRepository = ticketRepository;
-//    }
-//
-//    @Transactional
-//    public Ticket createTicket(Ticket ticket) {
-//        if (ticket.getViolation() == null) {
-//            throw new IllegalArgumentException("Veículo não possui multas");
-//        }
-//
-//        if (ticket.getViolation().getMoint() < 0) {
-//            throw new IllegalArgumentException("O valor da multa não pode ser negativo.");
-//        }
-//
-//        return ticketRepository.save(ticket);
-//    }
-//
-////    public List<Ticket> getAllTickets() {
-////    }
-////
-////    public Ticket getTicketById(Long id) {
-////    }
-////
-////    public Ticket updateTicket(Long id, Ticket ticket) {
-////    }
-////
-////    public void deleteTicket(Long id) {
-////    }
-//}
+package regularAPI.example.regularAPI.service;
+
+import regularAPI.example.regularAPI.domain.driver.Driver;
+import regularAPI.example.regularAPI.domain.ticket.DTO.TicketDTO;
+import regularAPI.example.regularAPI.domain.ticket.Ticket;
+import regularAPI.example.regularAPI.domain.ticket.mapper.TicketMapper;
+import regularAPI.example.regularAPI.domain.vehicle.Vehicle;
+import regularAPI.example.regularAPI.domain.violation.Violation;
+import regularAPI.example.regularAPI.repositories.TicketRepository;
+import regularAPI.example.regularAPI.repositories.VehicleRepository;
+import regularAPI.example.regularAPI.repositories.ViolationRepository;
+
+import java.util.List;
+import java.util.UUID;
+
+public class TicketService {
+
+    private final TicketRepository repo;
+    private final VehicleRepository vehicleRepository;
+    private final ViolationRepository violationRepository;
+    private final TicketMapper ticketMapper;
+
+    public TicketService(TicketRepository repo, VehicleRepository vehicleRepository, ViolationRepository violationRepository, TicketMapper ticketMapper) {
+        this.repo = repo;
+        this.vehicleRepository = vehicleRepository;
+        this.violationRepository = violationRepository;
+        this.ticketMapper = ticketMapper;
+    }
+
+    public TicketDTO get(UUID id) {
+        return ticketMapper.convertToTicketDTO(repo.findById(id).orElse(null));
+    }
+
+    public List<TicketDTO> getAll() {
+        return repo.findAll().stream().map(ticket -> ticketMapper.convertToTicketDTO(ticket)).toList();
+    }
+
+    public TicketDTO post(Ticket obj){
+
+        Ticket ticket = new Ticket();
+
+        Vehicle vehicle = vehicleRepository.findById(obj.getVehicle().getId()).get();
+
+        Violation violation = violationRepository.findById(obj.getViolation().getId()).get();
+
+
+        if (ticket.getOccurrence_data() != null){
+            ticket.setOccurrence_data(ticket.getOccurrence_data());
+        }
+        if (ticket.getViolation() != null){
+            ticket.setViolation(violation);
+        }
+        if (ticket.getVehicle() != null){
+            ticket.setVehicle(vehicle);
+        }
+
+        return ticketMapper.convertToTicketDTO(repo.save(ticket));
+
+    }
+
+    public TicketDTO put(UUID id, TicketDTO ticketDTO) {
+
+        Ticket ticket = repo.findById(id).orElse(null);
+
+        Vehicle vehicle = vehicleRepository.findById(ticketDTO.getVehicle().getId()).get();
+
+        Violation violation = violationRepository.findById(ticketDTO.getViolation().getId()).get();
+
+        if (ticket.getOccurrence_data() != null){
+            ticket.setOccurrence_data(ticket.getOccurrence_data());
+        }
+        if (ticket.getViolation() != null){
+            ticket.setViolation(violation);
+        }
+        if (ticket.getVehicle() != null){
+            ticket.setVehicle(vehicle);
+        }
+
+        return ticketMapper.convertToTicketDTO(repo.save(ticket));
+    }
+}

@@ -12,7 +12,4 @@ public class ViolationMapper {
         violationDTO.setMoint(violation.getMoint());
         return violationDTO;
     }
-
-    public ViolationDTO convertToCreateViolationDTO(Violation violation) {
-    }
 }
