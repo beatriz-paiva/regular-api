@@ -6,6 +6,9 @@
 
 Este projeto é uma API desenvolvida em Spring Boot para gerenciar multas de trânsito. Ele utiliza um banco de dados PostgreSQL que roda em um container Docker. A documentação da API está disponível através do Swagger, onde você pode visualizar e testar os endpoints.
 
+![img.png](img.png)
+
+
 ## Pré-requisitos
 
 - Docker Desktop instalado
@@ -38,10 +41,11 @@ O banco de dados é gerenciado via Docker. Certifique-se de ter o Docker instala
    Exemplo de configuração:
 
    ```properties
-   spring.datasource.url=jdbc:postgresql://localhost:5432/regular
-   spring.datasource.username=bpaiva
-   spring.datasource.password=senha
-   spring.jpa.hibernate.ddl-auto=update
+   datasource:
+    url: jdbc:postgresql://localhost:5432/regular
+    username: bpaiva
+    password: 2001
+    driver-class-name: org.postgresql.Driver
    ```
 
 
