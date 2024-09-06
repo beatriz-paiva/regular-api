@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import regularAPI.example.regularAPI.domain.ticket.DTO.TicketDTO;
+import regularAPI.example.regularAPI.domain.ticket.DTO.TicketResponseDTO;
 import regularAPI.example.regularAPI.domain.ticket.Ticket;
 import regularAPI.example.regularAPI.service.TicketService;
 
@@ -21,14 +22,14 @@ public class TicketController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<TicketDTO> get(@RequestParam UUID id){
-        TicketDTO response = service.get(id);
+    public ResponseEntity<TicketResponseDTO> get(@RequestParam UUID id){
+        TicketResponseDTO response = service.get(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<TicketDTO>> getAll(){
-        List<TicketDTO> response = service.getAll();
+    public ResponseEntity<List<TicketResponseDTO>> getAll(){
+        List<TicketResponseDTO> response = service.getAll();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

@@ -1,7 +1,9 @@
 package regularAPI.example.regularAPI.service;
 
 
+import org.springframework.stereotype.Service;
 import regularAPI.example.regularAPI.domain.violation.DTO.ViolationDTO;
+import regularAPI.example.regularAPI.domain.violation.DTO.ViolationResponseDTO;
 import regularAPI.example.regularAPI.domain.violation.Violation;
 import regularAPI.example.regularAPI.domain.violation.mapper.ViolationMapper;
 import regularAPI.example.regularAPI.repositories.ViolationRepository;
@@ -9,6 +11,7 @@ import regularAPI.example.regularAPI.repositories.ViolationRepository;
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class ViolationService {
 
     private final ViolationRepository repo;
@@ -19,12 +22,12 @@ public class ViolationService {
         this.violationMapper = violationMapper;
     }
 
-    public List<ViolationDTO> get() {
-        return repo.findAll().stream().map(violation -> violationMapper.convertToViolationDTO(violation)).toList();
+    public List<ViolationResponseDTO> get() {
+        return repo.findAll().stream().map(violation -> violationMapper.convertToViolationResponseDTO(violation)).toList();
     }
 
-    public ViolationDTO get(UUID id) {
-        return violationMapper.convertToViolationDTO(repo.findById(id).orElse(null));
+    public ViolationResponseDTO get(UUID id) {
+        return violationMapper.convertToViolationResponseDTO(repo.findById(id).orElse(null));
     }
 
     public ViolationDTO post(Violation obj){

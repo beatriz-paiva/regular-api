@@ -10,6 +10,6 @@ public interface DriverRepository extends JpaRepository<Driver, UUID> {
 //    @Query("SELECT * FROM driver WHERE driver.cpf = :driverCPF")
 //    Optional<Driver> findByCpf(@Param("driverCPF") String cpf);
 
-    <Optional>Driver findByCpf(String cpf);
+    Driver findByCpf(String cpf);
 
 }

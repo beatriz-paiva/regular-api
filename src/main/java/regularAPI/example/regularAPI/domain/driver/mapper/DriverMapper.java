@@ -10,6 +10,7 @@ public class DriverMapper {
 
     public DriverResponseDTO convertToDriverResponseDTO(Driver driver){
         DriverResponseDTO driverResponseDTO = new DriverResponseDTO();
+        driverResponseDTO.setId(driver.getId());
         driverResponseDTO.setCpf(driver.getCpf());
         driverResponseDTO.setName(driver.getName());
         driverResponseDTO.setRenach(driver.getRenach());

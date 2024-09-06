@@ -26,12 +26,15 @@ public class DriverService {
         this.driverMapper = driverMapper;
     }
 
-    public List<DriverResponseDTO> get() {
+    public List<DriverResponseDTO> getAll() {
         return repo.findAll().stream().map(driver -> driverMapper.convertToDriverResponseDTO(driver)).toList();
     }
 
-    public DriverResponseDTO get(UUID id) {
-        return driverMapper.convertToDriverResponseDTO(repo.findById(id).orElse(null));
+    public DriverResponseDTO get(String cpf) {
+        if(cpf != null){
+            return driverMapper.convertToDriverResponseDTO(repo.findByCpf(cpf));
+        }
+        return null;
     }
 
     public Driver post(Driver obj){

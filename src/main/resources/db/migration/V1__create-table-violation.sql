@@ -5,5 +5,5 @@ CREATE TABLE violation(
     description VARCHAR(100) NOT NULL,
     moint DECIMAL NOT NULL,
     rating VARCHAR(11) NOT NULL,
-    factor VARCHAR(11) NULL
+    factor VARCHAR(255) NULL
 );

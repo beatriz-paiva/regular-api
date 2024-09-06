@@ -11,6 +11,7 @@ import regularAPI.example.regularAPI.domain.vehicle.Vehicle;
 public class VehicleMapper {
     public VehicleResponseDTO convertToVehicleResponseDTO(Vehicle vehicle){
         VehicleResponseDTO vehicleResponseDTO = new VehicleResponseDTO();
+        vehicleResponseDTO.setId(vehicle.getId());
         vehicleResponseDTO.setModelo(vehicle.getModelo());
         vehicleResponseDTO.setPlaca(vehicle.getPlaca());
         vehicleResponseDTO.setVehicle_type(vehicle.getVehicle_type());

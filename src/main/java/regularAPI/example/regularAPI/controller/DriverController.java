@@ -20,22 +20,23 @@ public class DriverController {
     private DriverService service;
 
     @GetMapping("/all")
-    public ResponseEntity<List<DriverResponseDTO>> get() {
-        List<DriverResponseDTO> response = service.get();
+    public ResponseEntity<List<DriverResponseDTO>> getAll() {
+        List<DriverResponseDTO> response = service.getAll();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/")
-    public ResponseEntity<DriverResponseDTO> get(@RequestParam UUID id) {
-        DriverResponseDTO response = service.get(id);
+    public ResponseEntity<DriverResponseDTO> get(@RequestParam String cpf) {
+        System.out.println(cpf);
+        DriverResponseDTO response = service.get(cpf);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PatchMapping("/")
-    public DriverRequestDTO update(@RequestParam String cpf, @RequestBody DriverRequestDTO data) {
+    @PutMapping("/put")
+    public DriverRequestDTO put(@RequestParam String cpf, @RequestBody DriverRequestDTO data) {
+        System.out.println(cpf);
         DriverRequestDTO response = service.put(cpf, data);
         return response;
-
     }
 
     @PostMapping("/")
@@ -48,8 +49,8 @@ public class DriverController {
         }
 
     }
-    @DeleteMapping("/")
-    public String delete(UUID id) {
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable UUID id) {
         var response = service.del(id);
         return response;
     }

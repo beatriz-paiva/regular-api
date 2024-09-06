@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import regularAPI.example.regularAPI.domain.violation.DTO.ViolationDTO;
+import regularAPI.example.regularAPI.domain.violation.DTO.ViolationResponseDTO;
 import regularAPI.example.regularAPI.domain.violation.Violation;
 import regularAPI.example.regularAPI.service.ViolationService;
 
@@ -24,14 +25,14 @@ public class ViolationController {
 
     @GetMapping("/all")
 
-    public ResponseEntity<List<ViolationDTO>> get(){
-        List<ViolationDTO> response = service.get();
+    public ResponseEntity<List<ViolationResponseDTO>> get(){
+        List<ViolationResponseDTO> response = service.get();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/")
-    public ResponseEntity<ViolationDTO> get(@RequestParam UUID id){
-        var response = service.get(id);
+    public ResponseEntity<ViolationResponseDTO> get(@RequestParam UUID id){
+        ViolationResponseDTO response = service.get(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

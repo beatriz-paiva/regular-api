@@ -1,7 +1,9 @@
 package regularAPI.example.regularAPI.service;
 
+import org.springframework.stereotype.Service;
 import regularAPI.example.regularAPI.domain.driver.Driver;
 import regularAPI.example.regularAPI.domain.ticket.DTO.TicketDTO;
+import regularAPI.example.regularAPI.domain.ticket.DTO.TicketResponseDTO;
 import regularAPI.example.regularAPI.domain.ticket.Ticket;
 import regularAPI.example.regularAPI.domain.ticket.mapper.TicketMapper;
 import regularAPI.example.regularAPI.domain.vehicle.Vehicle;
@@ -13,6 +15,7 @@ import regularAPI.example.regularAPI.repositories.ViolationRepository;
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class TicketService {
 
     private final TicketRepository repo;
@@ -27,12 +30,12 @@ public class TicketService {
         this.ticketMapper = ticketMapper;
     }
 
-    public TicketDTO get(UUID id) {
-        return ticketMapper.convertToTicketDTO(repo.findById(id).orElse(null));
+    public TicketResponseDTO get(UUID id) {
+        return ticketMapper.convertToTicketResponseDTO(repo.findById(id).orElse(null));
     }
 
-    public List<TicketDTO> getAll() {
-        return repo.findAll().stream().map(ticket -> ticketMapper.convertToTicketDTO(ticket)).toList();
+    public List<TicketResponseDTO> getAll() {
+        return repo.findAll().stream().map(ticket -> ticketMapper.convertToTicketResponseDTO(ticket)).toList();
     }
 
     public TicketDTO post(Ticket obj){

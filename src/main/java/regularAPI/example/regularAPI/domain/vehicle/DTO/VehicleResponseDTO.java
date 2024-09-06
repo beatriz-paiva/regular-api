@@ -2,13 +2,24 @@ package regularAPI.example.regularAPI.domain.vehicle.DTO;
 
 import regularAPI.example.regularAPI.domain.driver.Driver;
 
+import java.util.UUID;
+
 public class VehicleResponseDTO {
 
+    private UUID id;
     private String modelo;
     private String placa;
     private String vehicle_type;
     private String renavam;
     private Driver driver;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public Driver getDriver() {
         return driver;
